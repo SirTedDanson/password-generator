@@ -125,7 +125,6 @@ var passwordSpecialCharPrompt = function() {
     }
     writePassword();
   }
-  return;
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
