@@ -1,6 +1,8 @@
 // Assignment code here
 
-
+function generatePassword () {
+  var passwordLength = window.prompt("Choose a password length between 8 and 128 characters")
+};
 
 
 
@@ -33,7 +35,8 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
+  
+  generatePassword();
 }
 
 // Add event listener to generate button
