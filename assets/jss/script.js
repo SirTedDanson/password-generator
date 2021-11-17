@@ -4,19 +4,16 @@ var useLowerCase = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o',
 var useUpperCase = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 var useNumbers = ['0','1','2','3','4','5','6','7','8','9'];
 var useSpecialChar = ['!','@','#','$','%','&','*','(',')','_','+','-','=','[',']','|',',','.','/','?','>','<'];
+var password = "";
 
 
 
-var parametersFunction = function (){
-  var parameterArray = [];
-  var passwordParameters = parameterArray.concat(useUpperCase,useLowerCase, useNumbers, useSpecialChar);
-  console.log(passwordParameters);
-  debugger;
-}
+
  //---------------------------------------------------------------------------------
 // 1st window LENGTH
+
+
   var generatePassword = function () {
-    
   var promptLength= window.prompt("Choose a password length between 8 and 128 characters.");
     if (promptLength >= 8 && promptLength <= 128) {
       passwordLength = parseInt(promptLength);
@@ -34,7 +31,7 @@ var passwordLowerCasePrompt = function() {
   var promptLowerCase = window.prompt("Would you like to include LOWERCASE letters? YES or NO");
       
     if (promptLowerCase == "no" || promptLowerCase == "NO" || promptLowerCase == null ) {
-      useLowerCase = "";
+      useLowerCase = [];
       passwordUpperCasePrompt ();
     }
     promptLowerCase = promptLowerCase.toLowerCase();
@@ -56,7 +53,7 @@ var passwordUpperCasePrompt = function() {
       
  
       if (promptUpperCase == "no" || promptUpperCase == "NO" || promptUpperCase == null ) {
-        useUpperCase = "";
+        useUpperCase = [];
         passwordNumbersPrompt();
       }
       
@@ -79,7 +76,7 @@ var passwordNumbersPrompt = function() {
       
  
       if (promptNumbers == "no" || promptNumbers == "NO" || promptNumbers == null ) {
-        useNumbers = "";
+        useNumbers = [];
         passwordSpecialCharPrompt();
       }
       
@@ -98,15 +95,14 @@ var passwordNumbersPrompt = function() {
  //---------------------------------------------------------------------------------
 // 5th window SPECIAL CHARACTERS
 var passwordSpecialCharPrompt = function() {
+  debugger;
   var promptSpecialChar = window.prompt("Would you like to include SpecialChar letters? YES or NO");
       
- 
-      if (promptSpecialChar == "no" || promptSpecialChar == "NO" || promptSpecialChar == null ) {
-        useSpecialChar = "";
+  
+      if (promptSpecialChar === "no" || promptSpecialChar === "NO" || promptSpecialChar === null ) {
+        useSpecialChar = [];
         parametersFunction();
       }
-      
-      promptSpecialChar = promptSpecialChar.toLowerCase();
 
       if (promptSpecialChar === "yes") {
        useSpecialChar = ['!','@','#','$','%','&','*','(',')','_','+','-','=','[',']','|',',','.','/','?','>','<'];
@@ -119,18 +115,28 @@ var passwordSpecialCharPrompt = function() {
       }
   };
 
+  var parametersFunction = function (){
+    var parameterArray = [];
+    var passwordParameters = parameterArray.concat(useUpperCase,useLowerCase, useNumbers, useSpecialChar);
+
+    for (i = 0; i < passwordLength; i++) {
+        var arrayPicker = Math.floor(Math.random() * (passwordParameters.length + 1));
+        password += passwordParameters[arrayPicker];
+    }
+    writePassword();
+  }
+  return;
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
+  passwordText.value = "";
   passwordText.value = password;
-  
-  generatePassword();
+  return;
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", generatePassword);
