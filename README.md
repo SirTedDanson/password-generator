@@ -12,7 +12,7 @@ Password generator which randomly selects characters based on a user's input.
 https://sirteddanson.github.io/password-generator/
 
 ## Screenshot
-![](assets/images/wesbite-snapshot.png)
+![](assets/images/website-snapshot.PNG)
 
 ## Contribution
 Made with ❤️ by Matthew Dwyer
