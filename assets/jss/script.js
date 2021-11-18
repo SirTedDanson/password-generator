@@ -1,6 +1,7 @@
 // Assignment code here
-
- //---------------------------------------------------------------------------------
+//
+// Password prompt window chain
+//---------------------------------------------------------------------------------
 // 1st window LENGTH
 var generatePassword = function () {
   // reset password
@@ -109,7 +110,7 @@ var generatePassword = function () {
     }
     return passwordSpecialCharPrompt();
   };
-   //---------------------------------------------------------------------------------
+  //---------------------------------------------------------------------------------
   // 5th window SPECIAL CHARACTERS
   var passwordSpecialCharPrompt = function() {
     // prompt window
@@ -143,7 +144,6 @@ var generatePassword = function () {
 //---------------------------------------------------------------------------------
 // function to determine the password parameters
 var parametersFunction = function (){
-  debugger;
   // combines the chosen prompt criteria
   var parameterArray = [];
   var passwordParameters = parameterArray.concat(useUpperCase, useLowerCase, useNumbers, useSpecialChar);
