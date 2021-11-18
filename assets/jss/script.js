@@ -3,7 +3,7 @@
 // Password prompt window chain
 //---------------------------------------------------------------------------------
 // 1st window LENGTH
-var generatePassword = function () {
+var generatorPrompts = function () {
   // reset password
   password = "";
   // password length prompt, only continue other prompts if length between 9 and 128 characters
@@ -118,7 +118,7 @@ var generatePassword = function () {
     // exit prompt and act as a "no choice" if user clicks cancel
     if (promptSpecialChar === null) {
       useSpecialChar = [];
-      return parametersFunction();
+      return passwordGenerator();
     }
     else {
     // change text to lower case for following conditional statements
@@ -137,20 +137,21 @@ var generatePassword = function () {
       window.alert("Please enter an appropriate value.");
       return passwordSpecialCharPrompt();
     }
-    return parametersFunction();
+    return passwordGenerator();
   };
   return passwordLengthPrompt();
 };
+
 //---------------------------------------------------------------------------------
 // function to determine the password parameters
-var parametersFunction = function (){
+var passwordGenerator = function (){
   // combines the chosen prompt criteria
   var parameterArray = [];
   var passwordParameters = parameterArray.concat(useUpperCase, useLowerCase, useNumbers, useSpecialChar);
 
   // loop which controls adding characters to the password based on password length
   for (i = 0; i < passwordLength; i++) {
-    var charPicker = Math.floor(Math.random() * (passwordParameters.length + 1));
+    var randomCharPicker = Math.floor(Math.random() * (passwordParameters.length + 1));
     // if no password parameters were chosen print this message
     if (passwordParameters.length == 0){
       password = "Please choose at least 1 password parameter";
@@ -158,12 +159,12 @@ var parametersFunction = function (){
     }
     // adjustement so "undefined" is not added as a possible character choice
     // undo increment increase if "undefined" is selected
-    else if (charPicker == passwordParameters.length) {
+    else if (randomCharPicker == passwordParameters.length) {
       i--;
     }
-    // add characters to password
+    // add characters to password by randomly selecting characters in the password parameters
     else {
-    password += passwordParameters[charPicker];
+    password += passwordParameters[randomCharPicker];
     }
   }
   return writePassword();
@@ -180,4 +181,4 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", generatePassword);
+generateBtn.addEventListener("click", generatorPrompts);
